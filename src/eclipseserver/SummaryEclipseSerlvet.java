@@ -13,12 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.http.impl.client.DefaultUserTokenHandler;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 
-import astproject.DefUse;
-import formatter.Application;
 import formatter.CheckStyleFormatter;
 
 public class SummaryEclipseSerlvet extends HttpServlet {
@@ -51,7 +48,7 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 		if( path.startsWith("/Formatter") ) { 
 			
 			String code =  aRequest.getParameter("code"); 
-			String how = aRequest.getParameter("how");
+			String how = aRequest.getParameter("how") == null ? "Compact" : aRequest.getParameter("how");
 
             aResponse.setContentType("text/html");
             aResponse.setStatus(HttpServletResponse.SC_OK);
@@ -89,7 +86,7 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 	}
 	
     public static File getWebFileFromBundle(String path) {
-    	if ( Application.TEST ) {
+    	if ( SummaryEclipseServerApplication.TEST ) {
 			URL url = Platform.getBundle("FormatterEclipseServer").getEntry(path);
 		    	
 			File file = null;
@@ -110,6 +107,8 @@ public class SummaryEclipseSerlvet extends HttpServlet {
     }
     
     public static File getCheckStyleFileFromBundle(String path) {
+
+    	if ( SummaryEclipseServerApplication.TEST ) {
 		URL url = Platform.getBundle("Formatter").getEntry(path);
 		File file = null;
 		if( url != null ) {
@@ -123,6 +122,9 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 			}
 		}
 		return file;
+    	} else {
+    		return new File(path);
+    	}
     }
     
     public static File getCompactFile() {

@@ -8,6 +8,8 @@ import org.mortbay.jetty.servlet.ServletHolder;
 
 public class SummaryEclipseServerApplication implements IApplication {
 
+	public static final boolean TEST = true;
+	
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
 		System.out.println("inside SummaryEclipseServerApplication");
