@@ -15,7 +15,11 @@ Installing the server
 Running the server as headless Eclipse
 
 	cd $ECLISE_DIR/eclipse
-   
+
+	screen
+	
+	Ctrl-a Shift-a  # To give a meaningful name to the current window:
+	   
 	./eclipse -nosplash -application FormatterEclipseServer.id # <plugin-id>.<extension-id> 
 
 	References:
