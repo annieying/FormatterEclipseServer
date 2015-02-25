@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ Formatter;bundle-version="1.0.0",
+ org.eclipse.core.resources;bundle-version="3.8.101",
+ DefUseDisplayer;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ lib/commons-collections-3.2.1.jar,
+ lib/commons-io-2.3.jar,
+ lib/commons-lang3-3.1.jar,
+ lib/commons-math3-3.0.jar,
+ lib/httpclient-4.2.2.jar,
+ lib/httpcore-4.2.2.jar,
+ lib/jericho-annie-modified.jar,
+ lib/jetty-6.1.26.jar,
+ lib/jetty-util-6.1.26.jar,
+ lib/servlet-api-2.5-20081211.jar
+Bundle-Version: 1.0.0.201502231836
+Bundle-Name: EclipseServer
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: FormatterEclipseServer;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+
