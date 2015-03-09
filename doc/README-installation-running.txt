@@ -20,7 +20,7 @@ Running the server as headless Eclipse
 	
 	Ctrl-a Shift-a  # To give a meaningful name to the current window:
 	   
-	./eclipse -nosplash -application FormatterEclipseServer.id deployment 
+	./eclipse -nosplash -application FormatterEclipseServer.id -debug -consoleLog deployment 
 
 	References:
 		http://blogs.operationaldynamics.com/andrew/software/java-gnome/eclipse-code-format-from-command-line
