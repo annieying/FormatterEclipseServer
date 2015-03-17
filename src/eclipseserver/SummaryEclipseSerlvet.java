@@ -33,6 +33,12 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 		ui,
 		text
 	}	
+	
+	enum How {
+		Compact,
+		Eclipse,
+		Vertical		
+	}
 
     public void doGet(HttpServletRequest aRequest, HttpServletResponse aResponse) 
             throws ServletException, IOException {
@@ -52,7 +58,7 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 		if( path.startsWith("/Formatter") ) { 
 			
 			String code =  aRequest.getParameter("code"); 
-			String how = aRequest.getParameter("how") == null ? "Compact" : aRequest.getParameter("how");
+			How how = aRequest.getParameter("how") == null ? How.Compact : How.valueOf(aRequest.getParameter("how"));
 			Format format = aRequest.getParameter("format") == null ? Format.ui : Format.valueOf(aRequest.getParameter("format")); 
 
             aResponse.setStatus(HttpServletResponse.SC_OK);
@@ -65,11 +71,11 @@ public class SummaryEclipseSerlvet extends HttpServlet {
                 htmlString = htmlString.replace(UNFORMATTED_CODE_PLACEHOLDER, "");
             } else {
 			    String formattedCode = "";
-			    if( how.equals("Compact") ){
+			    if( how == How.Compact ){
 			    	formattedCode = CheckStyleFormatter.format(code, getCompactFile());
-			    } else if( how.equals("Eclipse")) {
+			    } else if( how == How.Eclipse ) {
 			    	formattedCode = CheckStyleFormatter.format(code, getEclipseFile());
-			    } else if( how.equals("Vertical")) {
+			    } else if( how == How.Vertical ) {
 			    	formattedCode = CheckStyleFormatter.format(code, getVerticallyLongFile());
 			    }
 			    
