@@ -16,7 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 
-import formatter.CheckStyleFormatter;
+import formatter.EclipseCodeStyleFormatter;
 
 public class SummaryEclipseSerlvet extends HttpServlet {
 
@@ -72,11 +72,11 @@ public class SummaryEclipseSerlvet extends HttpServlet {
             } else {
 			    String formattedCode = "";
 			    if( how == How.Compact ){
-			    	formattedCode = CheckStyleFormatter.format(code, getCompactFile());
+			    	formattedCode = EclipseCodeStyleFormatter.format(code, getCompactFile());
 			    } else if( how == How.Eclipse ) {
-			    	formattedCode = CheckStyleFormatter.format(code, getEclipseFile());
+			    	formattedCode = EclipseCodeStyleFormatter.format(code, getEclipseFile());
 			    } else if( how == How.Vertical ) {
-			    	formattedCode = CheckStyleFormatter.format(code, getVerticallyLongFile());
+			    	formattedCode = EclipseCodeStyleFormatter.format(code, getVerticallyLongFile());
 			    }
 			    
 			    if( format == Format.ui) {
@@ -120,7 +120,7 @@ public class SummaryEclipseSerlvet extends HttpServlet {
     	}
     }
     
-    public static File getCheckStyleFileFromBundle(String path) {
+    public static File getCodeStyleFileFromBundle(String path) {
 
     	if ( SummaryEclipseServerApplication.TEST ) {
 		URL url = Platform.getBundle("Formatter").getEntry(path);
@@ -142,15 +142,15 @@ public class SummaryEclipseSerlvet extends HttpServlet {
     }
     
     public static File getCompactFile() {
-    	return getCheckStyleFileFromBundle(CheckStyleFormatter.FILE_COMPACT_STYLE);
+    	return getCodeStyleFileFromBundle(EclipseCodeStyleFormatter.FILE_COMPACT_STYLE);
     }
     
     public static File getVerticallyLongFile() {
-    	return getCheckStyleFileFromBundle(CheckStyleFormatter.FILE_VERTICALLY_LONG_STYLE);
+    	return getCodeStyleFileFromBundle(EclipseCodeStyleFormatter.FILE_VERTICALLY_LONG_STYLE);
     }
 
     public static File getEclipseFile() {
-    	return getCheckStyleFileFromBundle(CheckStyleFormatter.FILE_ECLIPSE_BUILT_IN_STYLE);
+    	return getCodeStyleFileFromBundle(EclipseCodeStyleFormatter.FILE_ECLIPSE_BUILT_IN_STYLE);
     }
 }
 

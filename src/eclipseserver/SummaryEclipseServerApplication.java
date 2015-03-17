@@ -8,7 +8,7 @@ import org.mortbay.jetty.Server;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.ServletHolder;
 
-import formatter.CheckStyleFormatter;
+import formatter.EclipseCodeStyleFormatter;
 
 public class SummaryEclipseServerApplication implements IApplication {
 
