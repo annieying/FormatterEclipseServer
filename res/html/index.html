@@ -36,7 +36,7 @@ input[type=range]:focus::-moz-range-track {
 }
 
 p {
-    font: 12px arial, sans-serif;
+    font: 15px arial, sans-serif;
 } 
 
 td {
@@ -65,17 +65,21 @@ Paste Java code to be formatted here:
 			name="code" 
 			style="max-width: 70px; max-height: 5px;overflow=hidden;font-size:12pt"><!--***CODE***--></textarea>
 		<br>
-		<input type="radio" name="how" value="Compact">Format compactly (default)<br>
+		<br>
+		<p>Select how to format the code: 
+		<p><input type="radio" name="how" value="Compact">Format compactly (default)<br>
 		<input type="radio" name="how" value="Eclipse">Format using Eclipse built-in<br>
-		<input type="radio" name="how" value="Vertical">Format vertically long<br>
+		<input type="radio" name="how" value="Vertical">Format vertically long<br>		
+		<br>
+		<p>Select the output format:		
+		<p><input type="radio" name="format" value="text">Output in text<br>
+		<input type="radio" name="format" value="ui">Output in Html user interface (default)<br>
+		<br>		
 		<input type="submit" value="Format" />
 		</form>
 	</td></tr>
 	<tr>
 	<td><!--***FORMATTED CODE***--></td>
-	</tr>
-	<tr>
-	<td><!--***DEF-USE OUTPUT***--></td>
 	</tr>
 </table>
 

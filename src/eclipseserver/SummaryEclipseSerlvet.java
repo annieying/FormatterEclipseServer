@@ -29,6 +29,10 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 	private static final String FORMATTED_CODE_TEMPLATE = "<pre class=\"prettyprint\">" 
 	        + FORMATTED_CODE_PLACEHOLDER + "</pre>";
 	
+	enum Format {
+		ui,
+		text
+	}	
 
     public void doGet(HttpServletRequest aRequest, HttpServletResponse aResponse) 
             throws ServletException, IOException {
@@ -49,8 +53,8 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 			
 			String code =  aRequest.getParameter("code"); 
 			String how = aRequest.getParameter("how") == null ? "Compact" : aRequest.getParameter("how");
+			Format format = aRequest.getParameter("format") == null ? Format.ui : Format.valueOf(aRequest.getParameter("format")); 
 
-            aResponse.setContentType("text/html");
             aResponse.setStatus(HttpServletResponse.SC_OK);
             ServletOutputStream out = aResponse.getOutputStream();
             
@@ -68,12 +72,16 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 			    } else if( how.equals("Vertical")) {
 			    	formattedCode = CheckStyleFormatter.format(code, getVerticallyLongFile());
 			    }
-			    htmlString = htmlString.replace(FORMATTED_CODE_PLACEHOLDER, 
-			        FORMATTED_CODE_TEMPLATE.replace(FORMATTED_CODE_PLACEHOLDER, formattedCode));
-	            htmlString = htmlString.replace(UNFORMATTED_CODE_PLACEHOLDER, code);
-	            
-	            
-//	            htmlString = htmlString.replace(DEF_USE_PLACEHOLDER, DefUse.analyze(unit));
+			    
+			    if( format == Format.ui) {
+		            aResponse.setContentType("text/html");
+			    	htmlString = htmlString.replace(FORMATTED_CODE_PLACEHOLDER, 
+			    			FORMATTED_CODE_TEMPLATE.replace(FORMATTED_CODE_PLACEHOLDER, formattedCode));
+			    	htmlString = htmlString.replace(UNFORMATTED_CODE_PLACEHOLDER, code);
+			    } else if( format == Format.text ) {
+		            aResponse.setContentType("text/plain");
+			    	htmlString = formattedCode;
+			    }
             }
 
             out.print(htmlString);
