@@ -21,7 +21,7 @@ public class SummaryEclipseServerApplication implements IApplication {
 		setArguments(context);		
 		
 		System.out.println("inside SummaryEclipseServerApplication");
-		Server server = new Server(8844);
+		Server server = new Server(8846);
 		Context root = new Context(server,"/",Context.SESSIONS);
 		root.addServlet(new ServletHolder(new  SummaryEclipseSerlvet()), "/*");	 
 		server.start();

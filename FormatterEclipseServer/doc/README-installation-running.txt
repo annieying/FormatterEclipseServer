@@ -24,4 +24,4 @@ Running the server as headless Eclipse
 		
 Accessing the web site
 
-	http://aspect.cs.mcgill.ca:8844/Formatter
+	http://annieying.ca:8846/Formatter
