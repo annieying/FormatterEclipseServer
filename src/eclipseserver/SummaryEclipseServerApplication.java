@@ -1,14 +1,10 @@
 package eclipseserver;
 
-import java.io.File;
-
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.mortbay.jetty.Server;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.ServletHolder;
-
-import formatter.EclipseCodeStyleFormatter;
 
 public class SummaryEclipseServerApplication implements IApplication {
 
