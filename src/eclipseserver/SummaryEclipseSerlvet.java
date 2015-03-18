@@ -60,7 +60,8 @@ public class SummaryEclipseSerlvet extends HttpServlet {
 			String code =  aRequest.getParameter("code"); 
 			How how = aRequest.getParameter("how") == null ? How.Compact : How.valueOf(aRequest.getParameter("how"));
 			Format format = aRequest.getParameter("format") == null ? Format.ui : Format.valueOf(aRequest.getParameter("format")); 
-
+			int lineLength = aRequest.getParameter("line-length") == null ? -1 : Integer.parseInt(aRequest.getParameter("line-length"));
+			
             aResponse.setStatus(HttpServletResponse.SC_OK);
             ServletOutputStream out = aResponse.getOutputStream();
             
@@ -72,11 +73,11 @@ public class SummaryEclipseSerlvet extends HttpServlet {
             } else {
 			    String formattedCode = "";
 			    if( how == How.Compact ){
-			    	formattedCode = EclipseCodeStyleFormatter.format(code, getCompactFile());
+			    	formattedCode = EclipseCodeStyleFormatter.format(code, getCompactFile(), lineLength);
 			    } else if( how == How.Eclipse ) {
-			    	formattedCode = EclipseCodeStyleFormatter.format(code, getEclipseFile());
+			    	formattedCode = EclipseCodeStyleFormatter.format(code, getEclipseFile(), lineLength);
 			    } else if( how == How.Vertical ) {
-			    	formattedCode = EclipseCodeStyleFormatter.format(code, getVerticallyLongFile());
+			    	formattedCode = EclipseCodeStyleFormatter.format(code, getVerticallyLongFile(), lineLength);
 			    }
 			    
 			    if( format == Format.ui) {
